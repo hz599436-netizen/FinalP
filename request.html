@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REQUEST - BOOKWORM</title>
+    <link rel="stylesheet" href="bookworm.css">
+</head>
+<body>
+    <header>
+        <h1>BOOKWORM</h1>
+        <nav>
+           <li> <a href="index.html">HOME</a></li>
+             <li><a href="review.html">REVIEW</a></li>
+        </nav>
+    </header>
+
+    <section>
+        <h2>REQUEST REVIEW</h2>
+        <p>Drop your recommendations and your reviews. Let's build our next reading list together.</p>
+    </section>
+
+    <section>
+        <h3>Request a Review</h3>
+        <p>Suggest a book to review!</p>
+        
+        <form id="requestForm">
+            <p>
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name" required>
+                <span id="nameError" class="error"></span>
+            </p>
+            
+            <p>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required>
+                <span id="emailError" class="error"></span>
+            </p>
+            
+            <p>
+                <label for="book">Book Title:</label><br>
+                <input type="text" id="book" name="book" required>
+                <span id="bookError" class="error"></span>
+            </p>
+            
+            <p>
+                <label for="reason">Your thoughts about the book</label><br>
+                <textarea id="reason" name="reason" rows="3" cols="40" required></textarea>
+                <span id="reasonError" class="error"></span>
+            </p>
+            
+            <p>
+                <button type="submit">Send Request</button>
+                <button type="reset">Clear</button>
+            </p>
+        </form>
+
+        <div id="confirmation" class="hidden">
+            <h3>Request Submitted!</h3>
+            <p>Thank you for your suggestion.</p>
+            <button id="newRequest">Make Another Request</button>
+        </div>
+    </section>
+
+    <section id="requestsList">
+        <h3>Recent Requests</h3>
+        <!-- Will be filled by JavaScript -->
+    </section>
+
+    <footer>
+        <p>Contact us: contact@BOOKWORM.com</p>
+        <p>&copy; 2025 BOOKWORM . All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
