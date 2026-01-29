@@ -65,7 +65,7 @@ img {
     clear: both;
 }
 
-/* header logo removed - header img rules deleted */
+
 
 
 nav {
@@ -427,11 +427,7 @@ section {
         flex: none;
     }
 }
-/* ===== ADD TO EXISTING CSS ===== */
 
-/* Our Community stats removed (HTML section deleted) */
-
-/* Form error styles */
 .error {
     color: #ff4444;
     font-size: 0.9rem;
@@ -439,7 +435,7 @@ section {
     display: block;
 }
 
-/* Confirmation message */
+
 .hidden {
     display: none;
 }
@@ -468,7 +464,7 @@ section {
     cursor: pointer;
 }
 
-/* Add review section */
+
 #addReview {
     margin-top: 3rem;
     padding: 2rem;
@@ -517,7 +513,7 @@ section {
     border: 1px solid #ff4444;
 }
 
-/* Requests list */
+
 #requestsList {
     margin-top: 3rem;
 }
@@ -545,7 +541,7 @@ section {
     color: var(--light-brown);
 }
 
-/* Focus states for accessibility */
+
 input:focus,
 textarea:focus,
 button:focus {
@@ -553,7 +549,7 @@ button:focus {
     outline-offset: 2px;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
     .request-meta {
         flex-direction: column;
