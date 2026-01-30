@@ -374,10 +374,32 @@ section {
 }
 
 .other-books p {
-    margin: 0.6rem 0;
+    margin: 0.45rem 0;
     line-height: 1.5;
-    font-size: 1rem;
+    font-size: 0.98rem;
+    color: var(--medium-brown);
+}
+
+.other-books .book-title {
+    font-weight: 600;
     color: var(--dark-text);
+    text-transform: none;
+}
+
+.other-books .muted {
+    color: rgba(44, 24, 16, 0.7);
+    font-size: 0.95rem;
+    margin-left: 0.4rem;
+}
+
+.other-books .rating {
+    margin-left: 0.6rem;
+    color: var(--accent-gold);
+    font-weight: 600;
+    background: rgba(201, 169, 89, 0.08);
+    padding: 0.08rem 0.4rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
 }
 
 
