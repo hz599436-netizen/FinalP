@@ -113,7 +113,7 @@ function handleRequestSubmit(e) {
     if (!valid) return;
 
     const requests = JSON.parse(localStorage.getItem('bookRequests') || '[]');
-    const newRequest = { name, email, book, reason, date: new Date().toISOString() };
+    const newRequest = { id: Date.now().toString(), name, email, book, reason, date: new Date().toISOString() };
     requests.unshift(newRequest);
     localStorage.setItem('bookRequests', JSON.stringify(requests));
 
@@ -150,12 +150,28 @@ function renderRequests() {
 
     const html = requests.map(r => {
         const date = new Date(r.date).toLocaleString();
-        return `\n        <div class="request-item">\n            <h4>${escapeHtml(r.book)}</h4>\n            <p>${escapeHtml(r.reason)}</p>\n            <div class="request-meta">Requested by <strong>${escapeHtml(r.name)}</strong> • <span>${date}</span></div>\n        </div>`;
+        return `\n        <div class="request-item" data-id="${r.id}">\n            <h4>${escapeHtml(r.book)}</h4>\n            <p>${escapeHtml(r.reason)}</p>\n            <div class="request-meta">Requested by <strong>${escapeHtml(r.name)}</strong> • <span>${date}</span></div>\n            <button class="delete-request" data-id="${r.id}" aria-label="Delete request">Delete</button>\n        </div>`;
     }).join('\n');
 
     list.innerHTML = html;
+
+    // attach delete handlers
+    list.querySelectorAll('.delete-request').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const id = this.getAttribute('data-id');
+            if (!id) return;
+            if (!confirm('Delete this request?')) return;
+            deleteRequest(id);
+        });
+    });
 }
 
+function deleteRequest(id) {
+    const requests = JSON.parse(localStorage.getItem('bookRequests') || '[]');
+    const filtered = requests.filter(r => String(r.id) !== String(id));
+    localStorage.setItem('bookRequests', JSON.stringify(filtered));
+    renderRequests();
+}
 
 function escapeHtml(str) {
     return String(str)

@@ -524,6 +524,25 @@ section {
     margin: 1rem 0;
     border-radius: 8px;
     border-left: 4px solid var(--accent-gold);
+    position: relative;
+}
+
+.request-item .delete-request {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    border: 2px solid rgba(0,0,0,0.08);
+    color: var(--medium-brown);
+    padding: 0.35rem 0.6rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.12s ease;
+}
+
+.request-item .delete-request:hover {
+    background: rgba(255, 80, 80, 0.08);
+    transform: translateY(-2px);
 }
 
 .request-item h4 {
