@@ -4,6 +4,20 @@ body {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --dark-brown: #3D2B1F;
+    --medium-brown: #6B4F3A;
+    --light-brown: #8B7355;
+    --cream: #a49d8f;
+    --dark-text: #2C1810;
+    --accent-gold: #C9A959;
+}
 
 
 body {
@@ -114,7 +128,7 @@ section:first-of-type h2 {
     font-family: 'Playfair Display', serif;
     font-size: 2.6rem;
     color: var(--medium-brown);
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.2rem; word-spacing: ;
     position: relative;
     display: inline-block;
 }
