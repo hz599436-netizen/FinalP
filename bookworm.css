@@ -536,6 +536,75 @@ section {
     border: 1px solid #ff4444;
 }
 
+/* Add to bookworm.css */
+.user-review {
+    background: linear-gradient(to right, var(--cream) 0%, #e8e1d2 100%);
+    border-left: 5px solid var(--accent-gold);
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.user-review:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.user-review .review-content {
+    flex: 1;
+}
+
+.user-review h4 {
+    color: var(--dark-brown);
+    margin-bottom: 0.75rem;
+    font-size: 1.3rem;
+}
+
+.user-review p {
+    color: var(--dark-text);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.delete-review {
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    align-self: center;
+    transition: background-color 0.3s;
+    margin-left: 1rem;
+    min-width: 80px;
+}
+
+.delete-review:hover {
+    background-color: #cc0000;
+}
+
+#userReviewsSection {
+    background-color: rgba(139, 115, 85, 0.05);
+    border: 1px dashed var(--light-brown);
+}
+
+#userReviewsSection h3 {
+    color: var(--medium-brown);
+    border-bottom: 2px solid var(--accent-gold);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+
+.review-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1.5rem;
+    border-radius: 8px;
+    background-color: rgb(91, 77, 50);
+}
+
 
 #requestsList {
     margin-top: 3rem;
