@@ -15,8 +15,8 @@
         </nav>
     </header>
 
-    <main class="reviews">
-        <section>
+    <main class="reviews" tabindex="0" aria-label="Reviews section">
+        <section aria-hidden="true">
             <h2>THIS WEEK'S READERS' BEST!!</h2>
         </section>
 
@@ -65,9 +65,17 @@
                 <p><span class="book-title">The Made Series</span> — Danielle Lori <span class="muted">(Mafia series)</span> <span class="rating" aria-hidden="true">4/5</span></p>
             </div>
         </section>
+        
+        <section id="userReviewsSection">
+            <h3> Reviews</h3>
+            <div id="userReviewsList">
+                <p>Be the first Add yours below.</p>
+            </div>
+        </section>
+
 
         <section id="addReview">
-            <h3>Add Your Review</h3>
+            <h3>Add Your Review</h3> 
             <input type="text" id="reviewTitle" placeholder="Book title">
             <textarea id="reviewText" placeholder="Your review..."></textarea>
             <button id="submitReview">Submit Review</button>

@@ -15,9 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-function setupHomePage() {
-    animateCounters();
-}
 
 function animateCounters() {
     const bookCount = document.getElementById('bookCount');
@@ -52,7 +49,49 @@ function setupReviewsPage() {
 
 function loadUserReviews() {
     const reviews = JSON.parse(localStorage.getItem('userReviews') || '[]');
-    console.log('Loaded', reviews.length, 'user reviews');
+    const container = document.getElementById('userReviewsList');
+    if (!container) return;
+
+    if (!reviews || reviews.length === 0) {
+        container.innerHTML = '<p>No reviews submitted yet. Be the first to add your review!</p>';
+        return;
+    }
+
+   
+    let migrated = false;
+    reviews.forEach((r, i) => {
+        if (!r.id) {
+            r.id = Date.now().toString() + '_' + i;
+            migrated = true;
+        }
+    });
+    if (migrated) localStorage.setItem('userReviews', JSON.stringify(reviews));
+
+    const html = reviews.map(r => {
+        const date = r.date ? new Date(r.date).toLocaleString() : '';
+        const id = r.id || '';
+        return `
+            <article class="review-card user-review" data-id="${id}">
+                <div class="review-content">
+                    <h4>${escapeHtml(r.title)}</h4>
+                    <p>${escapeHtml(r.text)}</p>
+                    <div class="request-meta">Submitted • <span>${date}</span></div>
+                </div>
+                <button class="delete-review" data-id="${id}" aria-label="Delete review">Delete</button>
+            </article>`;
+    }).join('\n');
+
+    container.innerHTML = html;
+
+
+    container.querySelectorAll('.delete-review').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const id = this.getAttribute('data-id');
+            if (!id) return;
+            if (!confirm('Delete this review?')) return;
+            deleteReview(id);
+        });
+    });
 }
 
 function submitReview() {
@@ -70,14 +109,23 @@ function submitReview() {
     }
 
     const reviews = JSON.parse(localStorage.getItem('userReviews') || '[]');
-    reviews.unshift({ title, text, date: new Date().toISOString() });
+    const newReview = { id: Date.now().toString(), title, text, date: new Date().toISOString() };
+    reviews.unshift(newReview);
     localStorage.setItem('userReviews', JSON.stringify(reviews));
 
     titleInput.value = '';
     textInput.value = '';
     messageDiv.textContent = 'Review submitted!';
     messageDiv.className = 'success';
+    
     setTimeout(() => { messageDiv.textContent = ''; messageDiv.className = ''; }, 3000);
+}
+
+function deleteReview(id) {
+    const reviews = JSON.parse(localStorage.getItem('userReviews') || '[]');
+    const filtered = reviews.filter(r => String(r.id || '') !== String(id));
+    localStorage.setItem('userReviews', JSON.stringify(filtered));
+    loadUserReviews();
 }
 
 
@@ -150,12 +198,17 @@ function renderRequests() {
 
     const html = requests.map(r => {
         const date = new Date(r.date).toLocaleString();
-        return `\n        <div class="request-item" data-id="${r.id}">\n            <h4>${escapeHtml(r.book)}</h4>\n            <p>${escapeHtml(r.reason)}</p>\n            <div class="request-meta">Requested by <strong>${escapeHtml(r.name)}</strong> • <span>${date}</span></div>\n            <button class="delete-request" data-id="${r.id}" aria-label="Delete request">Delete</button>\n        </div>`;
+        return `\n        
+        <div class="request-item" data-id="${r.id}">\n           
+        <h4>${escapeHtml(r.book)}</h4>\n           
+         <p>${escapeHtml(r.reason)}</p>\n            
+         <div class="request-meta">Requested by <strong>${escapeHtml(r.name)} </strong> • <span>${date}</span></div>\n           
+         <button class="delete-request" data-id="${r.id}" aria-label="Delete request">Delete</button>\n        </div>`;
     }).join('\n');
 
     list.innerHTML = html;
 
-    // attach delete handlers
+  
     list.querySelectorAll('.delete-request').forEach(btn => {
         btn.addEventListener('click', function () {
             const id = this.getAttribute('data-id');
